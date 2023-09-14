@@ -62,6 +62,7 @@ def draw():
     goto(0, 0)
     shape(car)
     stamp()
+     hidden_count = hide.count(True)
 
     for count in range(64):
         if hide[count]:
@@ -89,3 +90,5 @@ tracer(False)
 onscreenclick(tap)
 draw()
 done()
+if hidden_count == 0:
+    print("Todos los cuadros estan destapados")
