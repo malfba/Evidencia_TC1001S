@@ -53,7 +53,7 @@ def rectangle(start, end):
         forward(end.y - start.y)
         left(90)
     end_fill() 
-    pass  # TODO
+    
 
 
 def triangle(start, end):
@@ -66,7 +66,7 @@ def triangle(start, end):
         forward(end.x - start.x)
         left(120)
     end_fill()
-    pass  # TODO
+    
 
 
 def tap(x, y):
