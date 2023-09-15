@@ -15,9 +15,11 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+tiles = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'] * 4
 state = {'mark': None}
-hide = [True] * 64
+hide = [True] * 32
+tap_count = 0  # Variable para contar los taps
+all_uncovered = False  # Variable para rastrear si todas las tarjetas están destapadas
 
 
 def square(x, y):
@@ -45,6 +47,11 @@ def xy(count):
 
 def tap(x, y):
     """Update mark and hidden tiles based on tap."""
+    global tap_count, all_uncovered
+
+    if all_uncovered:
+        return  # Si todas las tarjetas están destapadas, no hagas nada
+
     spot = index(x, y)
     mark = state['mark']
 
@@ -55,6 +62,14 @@ def tap(x, y):
         hide[mark] = False
         state['mark'] = None
 
+    tap_count += 1  # Incrementa el conteo de taps
+    print("Taps:", tap_count)  # Muestra el conteo de taps en la consola
+
+    hidden_count = hide.count(True)
+    if hidden_count == 0:
+        all_uncovered = True
+        print("¡Todos los cuadros están destapados!")
+
 
 def draw():
     """Draw image and tiles."""
@@ -64,7 +79,7 @@ def draw():
     stamp()
      hidden_count = hide.count(True)
 
-    for count in range(64):
+    for count in range(32):
         if hide[count]:
             x, y = xy(count)
             square(x, y)
@@ -90,5 +105,3 @@ tracer(False)
 onscreenclick(tap)
 draw()
 done()
-if hidden_count == 0:
-    print("Todos los cuadros estan destapados")
