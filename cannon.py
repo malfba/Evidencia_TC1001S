@@ -24,8 +24,8 @@ def tap(x, y):
         ball.x = -199
         ball.y = -199
         #para cambiar la velocidad, debemos de cambiar el valor del divisor.
-        speed.x = (x + 200) / 25
-        speed.y = (y + 200) / 25
+        speed.x = (x + 200) / 18
+        speed.y = (y + 200) / 18
 
 
 def inside(xy):
