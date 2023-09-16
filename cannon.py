@@ -63,12 +63,12 @@ def move():
     for target in dupe:
         if abs(target - ball) > 13:
             targets.append(target)
-        if not inside(target):  # If the target is outside
-            target.x = 200  # Reposition it to the right edge
+        if not inside(target):  
+            target.x = 200 
 
     draw()
 
-    ontimer(move, 50)  # Continuously call the move function
+    ontimer(move, 50) 
 
 setup(420, 420, 370, 0)
 hideturtle()
