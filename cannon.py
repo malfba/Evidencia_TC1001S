@@ -17,21 +17,17 @@ ball = vector(-200, -200)
 speed = vector(0, 0)
 targets = []
 
-
 def tap(x, y):
     """Respond to screen tap."""
     if not inside(ball):
         ball.x = -199
         ball.y = -199
-        #para cambiar la velocidad, debemos de cambiar el valor del divisor.
         speed.x = (x + 200) / 18
         speed.y = (y + 200) / 18
-
 
 def inside(xy):
     """Return True if xy within screen."""
     return -200 < xy.x < 200 and -200 < xy.y < 200
-
 
 def draw():
     """Draw ball and targets."""
@@ -46,7 +42,6 @@ def draw():
         dot(6, 'red')
 
     update()
-
 
 def move():
     """Move ball and targets."""
@@ -68,15 +63,12 @@ def move():
     for target in dupe:
         if abs(target - ball) > 13:
             targets.append(target)
+        if not inside(target):  # If the target is outside
+            target.x = 200  # Reposition it to the right edge
 
     draw()
 
-    for target in targets:
-        if not inside(target):
-            return
-
-    ontimer(move, 50)
-
+    ontimer(move, 50)  # Continuously call the move function
 
 setup(420, 420, 370, 0)
 hideturtle()
