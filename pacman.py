@@ -52,6 +52,15 @@ tiles = [
 ]
 # fmt: on
 
+def simple_follow(point, course):
+    if pacman.x > point.x and valid(point + vector(5, 0)):
+        point.x += 5
+    elif pacman.x < point.x and valid(point + vector(-5, 0)):
+        point.x -= 5
+    elif pacman.y > point.y and valid(point + vector(0, 5)):
+        point.y += 5
+    elif pacman.y < point.y and valid(point + vector(0, -5)):
+        point.y -= 5
 
 def square(x, y):
     """Draw square using path at (x, y)."""
@@ -133,18 +142,7 @@ def move():
     dot(20, 'yellow')
 
     for point, course in ghosts:
-        if valid(point + course):
-            point.move(course)
-        else:
-            options = [
-                vector(5, 0),
-                vector(-5, 0),
-                vector(0, 5),
-                vector(0, -5),
-            ]
-            plan = choice(options)
-            course.x = plan.x
-            course.y = plan.y
+        simple_follow(point)  # Utilizar simple_follow para actualizar la posición del fantasma
 
         up()
         goto(point.x + 10, point.y + 10)
