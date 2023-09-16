@@ -1,25 +1,32 @@
-
 from random import randrange, choice
 from turtle import *
-
 from freegames import square, vector
 
 food = vector(0, 0)
 snake = [vector(10, 0)]
 aim = vector(0, -10)
-
 colors = ['blue', 'green', 'orange', 'purple', 'yellow']
+food_color = choice(colors)
 
 def change(x, y):
     """Change snake direction."""
     aim.x = x
     aim.y = y
 
-
 def inside(head):
     """Return True if head inside boundaries."""
     return -200 < head.x < 190 and -200 < head.y < 190
 
+def move_food():
+    """Move the food randomly by one step."""
+    directions = [vector(10, 0), vector(-10, 0), vector(0, 10), vector(0, -10)]
+    direction = choice(directions)
+
+    food.move(direction)
+
+    # Ensure food stays inside the screen
+    food.x = max(-190, min(food.x, 180))
+    food.y = max(-190, min(food.y, 180))
 
 def move():
     """Move snake forward one segment."""
@@ -33,13 +40,16 @@ def move():
 
     snake.append(head)
 
+    global food_color
     if head == food:
         print('Snake:', len(snake))
         food.x = randrange(-10, 10) * 10
         food.y = randrange(-10, 10) * 10
-         food_color = choice(colors)
+        food_color = choice(colors)
     else:
         snake.pop(0)
+
+    move_food()
 
     clear()
 
@@ -49,7 +59,6 @@ def move():
     square(food.x, food.y, 9, food_color)
     update()
     ontimer(move, 100)
-
 
 setup(420, 420, 370, 0)
 hideturtle()
