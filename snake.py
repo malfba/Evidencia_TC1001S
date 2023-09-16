@@ -24,7 +24,6 @@ def move_food():
 
     food.move(direction)
 
-    # Ensure food stays inside the screen
     food.x = max(-190, min(food.x, 180))
     food.y = max(-190, min(food.y, 180))
 
