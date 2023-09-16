@@ -35,8 +35,8 @@ def move():
 
     if head == food:
         print('Snake:', len(snake))
-        food.x = randrange(-15, 15) * 10
-        food.y = randrange(-15, 15) * 10
+        food.x = randrange(-10, 10) * 10
+        food.y = randrange(-10, 10) * 10
          food_color = choice(colors)
     else:
         snake.pop(0)
