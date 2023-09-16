@@ -77,7 +77,6 @@ def draw():
     goto(0, 0)
     shape(car)
     stamp()
-     hidden_count = hide.count(True)
 
     for count in range(32):
         if hide[count]:
@@ -89,9 +88,9 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 25, y + 10)  # Ajustar las coordenadas para centrar el dígito en el cuadro
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(tiles[mark], font=('Arial', 30, 'normal'), align="center")
 
     update()
     ontimer(draw, 100)
@@ -105,3 +104,4 @@ tracer(False)
 onscreenclick(tap)
 draw()
 done()
+
